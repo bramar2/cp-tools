@@ -16,6 +16,18 @@ public class Main {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
+//    public static final String ANSI_RESET = "";
+//    public static final String ANSI_BLACK = "";
+//    public static final String ANSI_RED = "";
+//    public static final String ANSI_GREEN = "";
+//    public static final String ANSI_YELLOW = "";
+//    public static final String ANSI_BLUE = "";
+//    public static final String ANSI_PURPLE = "";
+//    public static final String ANSI_CYAN = "";
+//    public static final String ANSI_WHITE = "";
+
+
+
     private static final String PROGRAM_NAME = "cf";
     private static final ContestSite SITE = new Codeforces();
     private static final String PROBLEM_FILE = "." + PROGRAM_NAME + "-problems";
