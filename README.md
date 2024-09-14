@@ -2,6 +2,7 @@
 ### For consoles not supporting ANSI, replace the ANSI codes in Main.java into "" (empty strings), then build manually with mvn compile assembly:single
 
 ### Dependencies: Gson, Jsoup (for download)
+### Accessed URLs: https://codeforces.com/problemset/problem/%s/%s, https://codeforces.com/api/contest.standings?contestId=%s&from=1&count=1, https://atcoder.jp/contests/%s/tasks/%s_%s, (Unofficial) https://kenkoooo.com/atcoder/resources/contest-problem.json
 
 ```
 %s-Helper
