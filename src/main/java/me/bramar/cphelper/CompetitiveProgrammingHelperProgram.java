@@ -135,7 +135,7 @@ public class CompetitiveProgrammingHelperProgram {
             %s d/download <contest-id>
             %s g/gen
             %s p/problem <max-letter>
-            %s s/sample <problem>
+            %s s/sample <problem> [start-idx]
             %s t/test [-s] <problem>
             %s v/diff <problem> <sample>
             %s template <file>
