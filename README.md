@@ -38,7 +38,7 @@
 `Example <problem>: A, B, C, C2, D, ...` \
 `-s indicates skipping build stage`
 #### %s v/diff \<problem> \<sample>
-`Check difference of code and expected output using diff tool (requirement for this to work` \
+`Check difference of code and expected output using diff tool (required for this to work)` \
 `Example <problem>: A, B, C, C2, D, ...` \
 `Example <sample>: 1, 2, 4, 19, 33, ...` \
 #### %s template \<file>
