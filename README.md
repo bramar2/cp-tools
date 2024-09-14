@@ -1,4 +1,4 @@
-## Competitive programming tool for C++ in Codeforces and Atcoder. Extensible to other sites. (Currently only C++ build is supported)
+## Competitive programming tool. Extensible.
 ### For consoles not supporting ANSI, replace the ANSI codes in Main.java into "" (empty strings), then build manually with mvn compile assembly:single
 
 ### Dependencies: Gson, Jsoup (for download)
