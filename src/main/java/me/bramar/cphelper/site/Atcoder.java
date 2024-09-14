@@ -1,12 +1,14 @@
-package me.bramar.cphelper;
+package me.bramar.cphelper.site;
 
 import com.google.gson.JsonParser;
+import me.bramar.cphelper.CompetitiveProgrammingHelperProgram;
+import me.bramar.cphelper.functional.SampleConsumer;
+import me.bramar.cphelper.lang.Cpp;
+import me.bramar.cphelper.lang.Lang;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.NodeFilter;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -18,12 +20,17 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.zip.GZIPInputStream;
 
-import static me.bramar.cphelper.Main.*;
+import static me.bramar.cphelper.CompetitiveProgrammingHelperProgram.*;
 
-public class Atcoder implements ContestSite {
+public class Atcoder extends ContestSite {
 
     private static final String API_UNOFFICIAL_CONTEST_PROBLEM = "https://kenkoooo.com/atcoder/resources/contest-problem.json";
     private static final String PAGE_PROBLEM = "https://atcoder.jp/contests/%s/tasks/%s_%s";
+
+    public Atcoder(CompetitiveProgrammingHelperProgram main) {
+        super(main);
+    }
+
     @Override
     public List<String> contestIndices(String contestId) throws IOException {
         System.out.println(ANSI_YELLOW+"Getting contest problems..."+ANSI_RESET);
@@ -101,6 +108,27 @@ public class Atcoder implements ContestSite {
         }else {
             try(InputStream in = con.getErrorStream()) {
                 onError.accept("Res code " + res + ": " + new String(in.readAllBytes()));
+            }
+        }
+    }
+
+    @Override
+    public String longName() {
+        return "atcoder";
+    }
+
+    @Override
+    public String shortName() {
+        return "atc";
+    }
+
+    @Override
+    public void customLibrary(List<String> args, Lang language) {
+        if(language instanceof Cpp) {
+            if(main.getConfig().containsKey(CONFIG_ATCODER_LIB_PATH) &&
+                    !main.getConfig().get(CONFIG_ATCODER_LIB_PATH).isBlank()) {
+                args.add("-I");
+                args.add(main.getConfig().get(CONFIG_ATCODER_LIB_PATH));
             }
         }
     }

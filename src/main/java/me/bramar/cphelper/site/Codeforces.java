@@ -1,6 +1,8 @@
-package me.bramar.cphelper;
+package me.bramar.cphelper.site;
 
 import com.google.gson.JsonParser;
+import me.bramar.cphelper.CompetitiveProgrammingHelperProgram;
+import me.bramar.cphelper.functional.SampleConsumer;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,10 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static me.bramar.cphelper.Main.*;
-public class Codeforces implements ContestSite {
+import static me.bramar.cphelper.CompetitiveProgrammingHelperProgram.*;
+public class Codeforces extends ContestSite {
     private static final String API_STANDINGS = "https://codeforces.com/api/contest.standings?contestId=%s&from=1&count=1";
     private static final String PAGE_PROBLEM = "https://codeforces.com/problemset/problem/%s/%s";
+
+    public Codeforces(CompetitiveProgrammingHelperProgram main) {
+        super(main);
+    }
+
     @Override
     public List<String> contestIndices(String contestId) throws IOException {
         System.out.println(ANSI_YELLOW+"Getting contest problems..."+ANSI_RESET);
@@ -93,5 +100,15 @@ public class Codeforces implements ContestSite {
                 onError.accept("Res code " + res + ": " + new String(in.readAllBytes()));
             }
         }
+    }
+
+    @Override
+    public String longName() {
+        return "codeforces";
+    }
+
+    @Override
+    public String shortName() {
+        return "cf";
     }
 }

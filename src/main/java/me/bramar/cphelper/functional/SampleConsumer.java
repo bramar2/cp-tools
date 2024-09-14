@@ -1,4 +1,4 @@
-package me.bramar.cphelper;
+package me.bramar.cphelper.functional;
 
 import java.io.IOException;
 
