@@ -47,8 +47,7 @@ public class Cpp extends Lang {
     @Override
     public void exec(String arg, OSConsumer input, ISConsumer output)
             throws IOException, InterruptedException {
-        ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/c",
-                buildFile(arg).getAbsolutePath());
+        ProcessBuilder processBuilder = new ProcessBuilder(buildFile(arg).getAbsolutePath());
         Process process = processBuilder.start();
         try(OutputStream out = process.getOutputStream()) {
             input.accept(out);
