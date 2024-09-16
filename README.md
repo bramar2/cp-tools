@@ -9,7 +9,7 @@
 ==== Help ====
 %s d/download <contest-id>
 %s g/gen
-%s p/problem <max-letter>
+%s p/problem <letters...>
 %s s/sample <problem> [start-idx]
 %s t/test [-s] <problem>
 %s v/diff <problem> <sample>
@@ -25,14 +25,14 @@
 `Downloads all problem indices (index) and samples if possible. Example <contest-id>: 2000, abc370`
 #### %s gen
 `Generates template code files for all problem indices (index)`
-#### %s p/problem \<max-letter>
-`Marks problems from letter A -> max-letter (in case d/download doesn't work). Example <max-letter>: G, AB` \
+#### %s p/problem \<letters...>
+`Marks problem indices (in case d/download doesn't work).` \
 `Then you can do gen, test, sample and everything else` \
-`Does not work with subproblems! Like C2, D3, ... (unlike download)`
+`Example <letters...>: A B C1 C2 D E1 E2`
 #### %s s/sample \<problem> \[start-idx]
 `Allows you to manually enter samples input and output for testing.` \
 `Start-idx is used as the start number for samples, default: 1` \
-`Example <problem>: A, B, C, C2, D, ...` \
+`Example <problem>: A, B, C1, C2, D, ...` \
 `Example [start-idx]: 1, 2, 4, 19, 33, ...` \
 #### %s t/test \[-s] \<problem>
 `Test code using samples` \
