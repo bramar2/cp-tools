@@ -134,7 +134,7 @@ public class CompetitiveProgrammingHelperProgram {
             {Y}==== Help ===={W}
             %s d/download <contest-id>
             %s g/gen
-            %s p/problem <max-letter>
+            %s p/problem <letters/indices...>
             %s s/sample <problem> [start-idx]
             %s t/test [-s] <problem>
             %s v/diff <problem> <sample>
@@ -168,36 +168,35 @@ public class CompetitiveProgrammingHelperProgram {
         }
         return indices;
     }
-    private String incr(String s) {
-        StringBuilder b = new StringBuilder(s);
-        for(int i = s.length(); i --> 0;) {
-            if(b.charAt(i) == 'Z') {
-                b.setCharAt(i, 'A');
-            }else {
-                b.setCharAt(i, (char) (b.charAt(i) + 1));
-                return b.toString();
-            }
-        }
-        // all Z
-        return b.append('A').toString();
-    }
-    private List<String> indicesFromMaxRange(String s) {
-        List<String> res = new ArrayList<>();
-        String curr = "A";
-        for(int i = 0; !curr.equalsIgnoreCase(s); i++) {
-            if(i >= 1e6) throw new StackOverflowError("stack overflow error 1e9 max_range = " + s);
-            res.add(curr);
-            curr = incr(curr);
-        }
-        res.add(curr);
-        return res;
-    }
-    public void setProblemIndices(String s) throws IOException {
-        List<String> indices = indicesFromMaxRange(s);
+//    private String incr(String s) {
+//        StringBuilder b = new StringBuilder(s);
+//        for(int i = s.length(); i --> 0;) {
+//            if(b.charAt(i) == 'Z') {
+//                b.setCharAt(i, 'A');
+//            }else {
+//                b.setCharAt(i, (char) (b.charAt(i) + 1));
+//                return b.toString();
+//            }
+//        }
+//        // all Z
+//        return b.append('A').toString();
+//    }
+//    private List<String> indicesFromMaxRange(String s) {
+//        List<String> res = new ArrayList<>();
+//        String curr = "A";
+//        for(int i = 0; !curr.equalsIgnoreCase(s); i++) {
+//            if(i >= 1e6) throw new StackOverflowError("stack overflow error 1e9 max_range = " + s);
+//            res.add(curr);
+//            curr = incr(curr);
+//        }
+//        res.add(curr);
+//        return res;
+//    }
+    public void setProblemIndices(String[] s) throws IOException {
         try(FileOutputStream out = new FileOutputStream(problemFile())) {
-            out.write(String.join(" ", indices).getBytes());
+            out.write(String.join(" ", s).getBytes());
         }
-        System.out.println(ANSI_YELLOW + "Set problem indices to: " + ANSI_CYAN + String.join(" ", indices) + ANSI_RESET);
+        System.out.println(ANSI_YELLOW + "Set problem indices to: " + ANSI_CYAN + String.join(" ", s) + ANSI_RESET);
     }
 
     public void download(String contestId) throws IOException {
@@ -492,8 +491,8 @@ public class CompetitiveProgrammingHelperProgram {
         switch(args[0].toLowerCase()) {
             case "p":
             case "problem":
-                if(args.length < 2) throw new IllegalArgumentException("Usage: %s p/problem <max-letter>".formatted(site.shortName()));
-                setProblemIndices(args[1]);
+                if(args.length < 2) throw new IllegalArgumentException("Usage: %s p/problem <letters/indices...>".formatted(site.shortName()));
+                setProblemIndices(Arrays.copyOfRange(args, 1, args.length));
                 break;
             case "d":
             case "download":
